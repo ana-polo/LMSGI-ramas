@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!--David Fernandez Viota comprobacion del .xsd mediante un .xml-->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:SchemaLocation="https://github.com/ana-polo/LMSGI-ramas/blob/DavidFernandez/parte_david.xsd"/>
+<ParteIncidencias>
+   <identificacion>
+       <alumno></alumno>
+       <dia></dia>
+       <curso></curso>
+       <modulo></modulo>
+    </identificacion>
+    <conductas>
+        <ConductasContrarias></ConductasContrarias>
+        <ConductasGraves></ConductasGraves>
+        <observaciones>
+            <informe>
+              <alumno></alumno>
+              <grupo></grupo>
+              <lugar></lugar>
+              <implicados></implicados>
+              <preguntas></preguntas>
+            </informe> 
+        </observaciones>
+    </conductas>
+    <firmas>
+       <firmaPadres></firmaPadres>
+       <firmaAlumno></firmaAlumno>
+       <firmaProfesor>
+          <hora></hora>
+          <firma></firma>
+          <profesor></profesor>
+       </firmaProfesor>
+       <firmaJefatura>
+          <hora></hora>
+          <firma></firma>
+       </firmaJefatura>
+       <firmaConvivencia>
+           <hora></hora>
+           <firma></firma>
+       </firmaConvivencia>
+    </firmas>
+</ParteIncidencias>
