@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<parte_de_incidencias fecha = "" curso = "" asignatura = "">
+    <alumno>
+        <nombre></nombre>
+        <apellidos></apellidos>
+    </alumno>
+    <conductas>
+        <contrarias>
+            <opciones_contrarias></opciones_contrarias>
+        </contrarias>
+        <gravemente>
+            <opciones_gravemente></opciones_gravemente>
+        </gravemente>
+    </conductas>
+    <firmas>
+        <f_profesor>
+            <hora_de_clase></hora_de_clase>
+            <firma></firma>
+        </f_profesor>
+        <f_j.e>
+            <h_j.e></h_j.e>
+            <firma></firma>
+        </f_j.e>
+        <f_convivencia>
+            <h_convivencia></h_convivencia>
+            <firma></firma>
+        </f_convivencia>
+        <f_padre_madre_tutores></f_padre_madre_tutores>
+    </firmas>
+    <observaciones></observaciones>
+    <informe>
+        <alumno>
+            <nombre></nombre>
+            <apellidos></apellidos>
+        </alumno>
+        <grupo></grupo>
+        <donde_ha_ocurrido></donde_ha_ocurrido>
+        <quien_esta_implicado></quien_esta_implicado>
+        <preguntas>
+            <pregunta></pregunta>
+        </preguntas>
+    </informe>
+    <firma></firma>
+    <hora_de_entrega></hora_de_entrega>
+</parte_de_incidencias>

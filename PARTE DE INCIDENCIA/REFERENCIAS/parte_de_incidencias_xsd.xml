@@ -1,0 +1,172 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+			<fichero>LMSGI-PARTE DE INCIDENCIAS</fichero>
+			<fechaCreacion>07-02-2023</fechaCreacion>
+			<autor>irvin asuncion</autor>
+			<aplicación>
+				Ejemplo de diseño de XML-Schema con referencias.
+			</aplicación>
+            <utilidad>Vocabulario para la validación de ficheros para un parte de incidencias</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType name = "tipotexto">
+		<xs:restriction base = "xs:string">
+			<xs:pattern value = "([A-Z]\w+ ?)(\w+ ?)+" />
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name= "apellido" >
+		<xs:restriction base = "xs:string" >
+			<xs:pattern value = "[A-Z][a-z]{20} [A-Z][a-z]{20}" />
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="firma" >
+        <xs:restriction base = "xs:string" >
+            <xs:pattern value = "[A-Z][a-z]{20}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name = "parte_de_incidencias" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "alumno"/>
+                <xs:element ref = "conductas"/>
+                <xs:element ref = "firmas" />
+                <xs:element name = "observaciones" type = "xs:string"/>
+                <xs:element ref = "informe"/>
+                <xs:element name = "firmas" type = "firma"/>
+                <xs:element name = "hora_de_entrega" type ="xs:dateTime"/> 
+            </xs:sequence>
+            <xs:attribute name = "fecha" use = "required" type = "xs:date" />
+            <xs:attribute name = "curso" use = "required" type = "xs:string" />
+            <xs:attribute name = "asignatura" use = "required" type = "xs:string" />
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "alumno" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name = "nombre" type = "tipotexto"/>
+                <xs:element name = "apellidos" type = "apellido"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "conductas" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "contrarias"/>
+                <xs:element ref = "gravemente"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "contrarias"  >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "opciones_contrarias" maxOccurs="unbounded"/>
+                <xs:choice minOccurs = "0" >
+					<xs:element name = "opcion" type = "xs:boolean" />
+				</xs:choice>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "gravemente"  >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "opciones_gravemente" maxOccurs="unbounded"/>
+                <xs:choice minOccurs = "0" >
+					<xs:element name = "opcion" type = "xs:boolean" />
+				</xs:choice>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="opciones_contrarias">
+        <xs:simpleType>    
+            <xs:restriction base = "xs:string">
+                <xs:enumeration value = "a" />
+                <xs:enumeration value = "b" />
+                <xs:enumeration value = "c" />
+                <xs:enumeration value = "d" />
+                <xs:enumeration value = "e" />
+                <xs:enumeration value = "f" />
+                <xs:enumeration value = "g" />
+                <xs:enumeration value = "h" />
+                <xs:enumeration value = "i" />
+                <xs:enumeration value = "j" />
+                <xs:enumeration value = "k" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="opciones_gravemente">
+        <xs:simpleType>    
+            <xs:restriction base = "xs:string">
+                <xs:enumeration value = "a" />
+                <xs:enumeration value = "b" />
+                <xs:enumeration value = "c" />
+                <xs:enumeration value = "d" />
+                <xs:enumeration value = "e" />
+                <xs:enumeration value = "f" />
+                <xs:enumeration value = "g" />
+                <xs:enumeration value = "h" />
+                <xs:enumeration value = "i" />
+                <xs:enumeration value = "j" />
+                <xs:enumeration value = "k" />
+                <xs:enumeration value = "l" />
+                <xs:enumeration value = "m" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name = "firmas" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "f_profesor"/>
+                <xs:element ref = "f_j.e"/>
+                <xs:element ref = "f_convivencia"/>
+                <xs:element name = "f_padre_madre_tutores" type = "firma"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "f_profesor" >
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name = "hora_de_clase" type = "xs:dateTime"/>
+                <xs:element name = "firma_profesor" type = "firma"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "f_j.e" >
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name = "firma_j.e" type="firma"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "f_convivencia" >
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name = "firma_convivencia" type="firma"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "informe" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "alumno"/>
+                <xs:element name = "apellidos" type="apellido"/>
+                <xs:element name = "grupo" type = "tipotexto" />
+                <xs:element name = "donde_ha_ocurrido" type = "tipotexto"/>
+                <xs:element name = "quien_esta_implicado" type = "tipotexto"/>
+                <xs:element ref="preguntas"/> 
+            </xs:sequence>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "preguntas" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>
