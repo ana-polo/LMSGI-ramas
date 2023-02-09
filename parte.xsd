@@ -85,7 +85,7 @@
             <xs:sequence>
                 <xs:element ref="conducta" /> 
                 <xs:element ref="opciones" />
-                <xs:element ref="recomendaciones" />
+                <xs:element ref="recomendaciones" maxOccurs="2"/>
                 <xs:element name="observaciones" type="xs:string" />
                 <xs:element ref="firmas" />
             </xs:sequence>
