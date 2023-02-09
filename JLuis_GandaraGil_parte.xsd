@@ -135,7 +135,6 @@
                 <xs:element name="grupo" type="tipoNombre"/>
                 <xs:element name="lugar" type="tipoNombre"/>
                 <xs:element name="implicado" type="tipoNombre"/>
-                <xs:element name="alumno" type="tipoNombre"/>
                 <xs:element name="preguntas" type="tipoNombre" maxOccurs="5"/>
         	</xs:sequence>
 		</xs:complexType>
