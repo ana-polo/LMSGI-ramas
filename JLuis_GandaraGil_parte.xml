@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+
+<!DOCTYPE ParteDeIncidencias SYSTEM "JLuis_GandaraGil_parte.xsd">
+
+<!-- 
+  Fichero: JLuis_GandaraGil_parte.xml
+  Funcionalidad: XML para verificar XSD
+  Autor: Jose Luis Gandara Gil 
+  Modulo: ASIR 
+  IES Alisal
+  
+-->
+
+<!-- Definicion del vocabulario interno -->
+
+<ParteDeIncidencias>
+
+    <identificacion>
+        <dia></dia>
+        <alumno></alumno>
+        <curso></curso>
+        <modulo></modulo>
+    </identificacion>
+
+
+    <conductas>
+        <conductasLeves></conductasLeves>
+        <conductasGraves></conductasGraves>
+        <observaciones>
+            <observaciones_prof></observaciones_prof>
+            <informe>
+                <alumno></alumno>
+                <grupo></grupo>
+                <lugar></lugar>
+                <implicado></implicado>
+                <preguntas></preguntas>
+            </informe>
+        </observaciones>
+    </conductas>
+
+
+    <firmas>
+        <firma_prof>
+            <horaClase></horaClase>
+            <firmaProfesor></firmaProfesor>
+            <profesor></profesor>
+        </firma_prof>
+        <firma_je>
+            <horaJefatura></horaJefatura>
+            <firmaJefatura></firmaJefatura>
+        </firma_je>
+        <firma_conv>
+            <horaConvivencia></horaConvivencia>
+            <firmaConvivencia></firmaConvivencia>
+        </firma_conv>
+        <firma_tutores></firma_tutores>
+        <firma_alumno></firma>
+    </firmas>
+
+</ParteDeIncidencias>
