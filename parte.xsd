@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:annotation> 
+        <xs:documentation xml:lang ="es-es"> 
+          <fecha_creacion> 09/02/2023 </fecha_creacion> 
+
+          <autor> Manuel Díaz Noval </autor> 
+
+          <utilidad> Estructura xsd de un parte escolar </utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+
+<!-- TipoDatos -->
+
+<xs:simpleType name="tipoNombre">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(([A-Z][a-z]+)|([A-Z][a-z]+) ([A-Z][a-z]+))" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoFirma">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([A-Z][a-z]+)" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="codAlumno">
+    <xs:restriction base="xs:string">
+
+        <!-- Hemos puesto un codigo de inicial nombre y apellido seguido de 3 numeros ejemplo: (MD777)-->
+
+        <xs:pattern value="([A-Z]{2}\d{3})" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoCurso">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(\d{4}\/\d{2})" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoModulo">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([A-Z][a-z]+)" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoGrupo">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([A-Z][a-z]+(\d)+)" />
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- Nivel 1 -->
+
+        
+    <xs:element name="Parte_de_incidencias">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="introduccion" />
+                <xs:element ref="conductas" />
+                <xs:element ref="informe" />
+            </xs:sequence>
+            <xs:attribute name="codAlumno" type="codAlumno"/>
+        </xs:complexType>
+    </xs:element>
+
+<!-- Nivel 2 -->
+
+    <xs:element name="introduccion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dia" type="xs:date" />
+                <xs:element name="alumno" type="tipoNombre" />
+                <xs:element name="curso" type="tipoCurso"/>
+                <xs:element name="modulo" type="tipoModulo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="conductas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="conducta" /> 
+                <xs:element ref="opciones" />
+                <xs:element ref="recomendaciones" />
+                <xs:element name="observaciones" type="xs:string" />
+                <xs:element ref="firmas" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="informe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="alumno" type="tipoNombre" />
+                <xs:element name="grupo" type="tipoGrupo" />
+                <xs:element name="lugar" type="tipoNombre" />
+                <xs:element name="implicados" type="tipoNombre" />
+                <xs:element ref="preguntas" />
+                <xs:element name="firmaAlumno" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!-- Nivel 3 -->
+    <xs:element name="conducta">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="conductaContraria" />
+                <xs:enumeration value="conductaGrave" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="opciones">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="a" />
+                <xs:enumeration value="b" />
+                <xs:enumeration value="c" />
+                <xs:enumeration value="d" />
+                <xs:enumeration value="e" />
+                <xs:enumeration value="f" />
+                <xs:enumeration value="g" />
+                <xs:enumeration value="h" />
+                <xs:enumeration value="i" />
+                <xs:enumeration value="j" />
+                <xs:enumeration value="k" />
+                <xs:enumeration value="l" />
+                <xs:enumeration value="m" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="recomendaciones">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="1" />
+                <xs:enumeration value="2" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="firmas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="horas" type="xs:time" maxOccurs="3"/>
+                <xs:element name="firmas" type="tipoFirma" maxOccurs="4"/>
+                <xs:element name="profesor" type="tipoNombre" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="preguntas">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="pregunta1" />
+                <xs:enumeration value="pregunta2" />
+                <xs:enumeration value="pregunta3" />
+                <xs:enumeration value="pregunta4" />
+                <xs:enumeration value="pregunta5" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+</xs:schema>
