@@ -1,0 +1,24 @@
+parteDeIncidencias(conductas,recomendacion_profesor,firmas,observacion,informe)
+    tipoAlumno(dia,nombre,curso,asignatura)
+    conductas
+    recomendacion_profesor
+    firmas(profesor,jE,convivencia,tutor)
+        profesor(horaClase,firmaProfesor,nombreProfesor)
+            horaClase
+            firmaProfesor
+            nombreProfesor
+        jE(horaJE,firmaJE)
+            horaJE
+            firmaJE
+        convivencia(horaConvivencia,firmaConvivencia)
+            horaConvivencia,
+            firmaConvivencia
+        tutor
+    observacion
+    informe(tipoAlumno,grupo,lugar,implicados,preguntas,firmaAlumno)
+        tipoAlumno
+        grupo
+        lugar
+        implicados
+        preguntas
+        firmaAlumno
