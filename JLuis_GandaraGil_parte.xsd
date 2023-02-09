@@ -1,0 +1,192 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+			<fichero>Parte-XMLSchema-referencia</fichero>
+			<fechaCreacion>07-02-2023</fechaCreacion>
+			<autor>José Luis Gándara Gil</autor>
+			<aplicación>Ejemplo de diseño de XML-Schema con referencias.</aplicación>
+            <utilidad>Vocabulario para la validación de ficheros básicos para un parte de incidencias</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+
+	<!-- ************** -->
+	<!-- TIPOS DE DATOS -->
+	<!-- ************** -->
+
+    <!--TIPO NOMBRE (TEXTO EN GENERAL)-->
+
+	<xs:simpleType name = "tipoNombre" >
+		<xs:restriction base = "xs:string" >
+			<xs:maxLength value = "255" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <!--TIPO CURSO-->
+
+	<xs:simpleType name = "tipoCurso" >
+		<xs:restriction base = "xs:string">
+			<xs:pattern value = "\d{1}º([A-Z]{25})" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <!--TIPO CONDUCTAS LEVES-->
+
+    <xs:simpleType name = "tipoConductaLeve" >
+		<xs:restriction base = "xs:string" >
+			<xs:enumeration value="a)"/>
+            <xs:enumeration value="b)"/>
+            <xs:enumeration value="c)"/>
+            <xs:enumeration value="d)"/>
+            <xs:enumeration value="e)"/>
+            <xs:enumeration value="f)"/>
+            <xs:enumeration value="g)"/>
+            <xs:enumeration value="h)"/>
+            <xs:enumeration value="i)"/>
+            <xs:enumeration value="j)"/>
+            <xs:enumeration value="k)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <!--TIPO CONDUCTAS GRAVES-->
+
+    <xs:simpleType name = "tipoConductaGrave" >
+		<xs:restriction base = "xs:string" >
+			<xs:enumeration value="a)"/>
+            <xs:enumeration value="b)"/>
+            <xs:enumeration value="c)"/>
+            <xs:enumeration value="d)"/>
+            <xs:enumeration value="e)"/>
+            <xs:enumeration value="f)"/>
+            <xs:enumeration value="g)"/>
+            <xs:enumeration value="h)"/>
+            <xs:enumeration value="i)"/>
+            <xs:enumeration value="j)"/>
+            <xs:enumeration value="k)"/>
+            <xs:enumeration value="l)"/>
+            <xs:enumeration value="m)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- ************************** -->
+	<!-- Definición del vocabulario -->
+	<!-- ************************** -->
+
+    <!--DEFINICION DE PARTE DE INCIDENCIAS-->
+
+    <xs:element name="ParteDeIncidencias">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="identificacion"/>
+                <xs:element ref="conductas"/>
+                <xs:element ref="firmas"/>
+			</xs:sequence> 
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE IDENTIFICACION-->
+	
+	<xs:element name="identificacion">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="dia" type="xs:date"/>
+                <xs:element name="alumno" type="tipoNombre"/>
+                <xs:element name="curso" type="tipoCurso"/>
+            	<xs:element name="modulo" type="tipoNombre"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE CONDUCTAS-->
+
+    <xs:element name="conductas">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="conductasLeves" type="tipoConductaLeve"/>
+                <xs:element name="conductasGraves" type="tipoConductaGrave"/>
+                <xs:element ref="observaciones"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE OBSERVACIONES-->
+
+    <xs:element name="observaciones">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="observaciones_prof" type="tipoNombre"/>
+                <xs:element ref="informe"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE INFORME-->
+
+    <xs:element name="informe">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="alumno" type="tipoNombre"/>
+                <xs:element name="grupo" type="tipoNombre"/>
+                <xs:element name="lugar" type="tipoNombre"/>
+                <xs:element name="implicado" type="tipoNombre"/>
+                <xs:element name="alumno" type="tipoNombre"/>
+                <xs:element name="preguntas" type="tipoNombre" maxOccurs="5"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE FIRMAS-->
+
+    <xs:element name="firmas">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element ref="firma_prof"/>
+                <xs:element ref="firma_je"/>
+                <xs:element ref="firma_conv"/>
+            	<xs:element name="firma_tutores"/>
+                <xs:element name="firma_alumno"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE FIRMA DE PROFESOR-->
+
+    <xs:element name="firma_prof">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="horaClase" type="xs:dateTime"/>
+                <xs:element name="firmaProfesor"/>
+                <xs:element name="profesor" type="tipoNombre"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE FIRMA DE JEFATURA-->
+
+    <xs:element name="firma_je">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="horaJefatura" type="xs:dateTime"/>
+                <xs:element name="firmaJefatura"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE FIRMA DE CONVIVENCIA-->
+
+    <xs:element name="firma_conv">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="horaConvivencia" type="xs:dateTime"/>
+                <xs:element name="firmaConvivencia"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
