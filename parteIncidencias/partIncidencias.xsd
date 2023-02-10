@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en-en">
+            <date> 02/02/23 </date>
+            <author> Manuel Gómez </author>
+            <utility> Parte de Incidencias </utility>
+            <function> refuerzo xsd </function>
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- comienzo listado de referencias -->
+    <xs:simpleType name="typeText30">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z](\w+) ?)+"/>
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+        <xs:simpleType name="typeConducta">
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="a)"/>
+                <xs:enumeration value="b)"/>
+                <xs:enumeration value="c)"/>
+                <xs:enumeration value="d)"/>
+                <xs:enumeration value="e)"/>
+                <xs:enumeration value="f)"/>
+                <xs:enumeration value="g)"/>
+                <xs:enumeration value="h)"/>
+                <xs:enumeration value="i)"/>
+                <xs:enumeration value="j)"/>
+                <xs:enumeration value="k)"/>
+                <xs:enumeration value="l)"/>
+                <xs:enumeration value="m)"/>
+            </xs:restriction>
+        </xs:simpleType>
+
+    <xs:simpleType name="typeText50">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z](\w+) ?)+"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- fin listado de referencias -->
+<xs:element name="parteDeIncidencias">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="datosDeBusqueda">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dia" type="xs:date"/>
+                        <xs:element name="alumno" type="typeText30"/>
+                        <xs:element name="asignaturaModulo" type="typeText30"/>
+                        <xs:element name="curso" type="xs:positiveInteger"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="firmas">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="firmaProfesor" type="xs:boolean"/>
+                        <xs:element name="firmaJefatura" type="xs:boolean"/>
+                        <xs:element name="firmaConvivencia" type="xs:boolean"/>
+                        <xs:element name="firmaTutores" type="xs:boolean"/>
+                        <xs:element name="firmaAlumno" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="conductas">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="conductaContrariayRecomienda">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="conductasContrariasPre">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="conductasContrarias" type="typeConducta"/>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="elProfesorRecomienda">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="recomendacion1" type="typeText50"/>
+                                                <!-- extension no furula -->
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="conductaPerjudicialyRecomienda">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="conductasPerjudicialesPre">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element name="conductasContrarias" type="typeConducta"/>
+                                            </xs:choice>
+                                        </xs:complexType>
+                                    </xs:element>
+                                        <xs:element name="elProfesorRecomienda">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element name="recomendacion1" type="typeText50"/>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                            <!--lloro mucho aqui -->
+                                            <xs:complexType name="extendedType">
+                                                <xs:complexContent>
+                                                    <xs:extension base="elProfesorRecomienda">
+                                                        <xs:choice>
+                                                            <xs:element name="recomendacion2" type="typetext50" />
+                                                        </xs:choice>
+                                                    </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                            </xs:choice>      
+                </xs:complexType> 
+            </xs:element>
+            <xs:element name="observaciones">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="horaClase" type="xs:dateTime"/>
+                            <xs:element name="profesor" type="typeText30"/>
+                            <xs:element name="horaJE" type="xs:dateTime"/>
+                            <xs:element name="horaConvivencia" type="xs:dateTime"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>    
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+</xs:schema>
