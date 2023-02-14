@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:annotation> 
+        <xs:documentation xml:lang ="es-es"> 
+          <fecha_creacion> 14/02/2023 </fecha_creacion> 
+
+          <autor> Manuel Díaz Noval </autor> 
+
+          <utilidad> Estructura xsd de una Gestion de ventas </utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+
+<!-- Tipos de datos -->
+<xs:simpleType name="tipoTexto">
+    <xs:restriction base="xs:string" >
+        <xs:maxLength value="100" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoID">
+    <xs:restriction base="xs:int">
+        <xs:totalDigits value="10" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!-- Nivel 1 -->
+
+    <xs:element name="gestionDeVentas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="comercial" />
+                <xs:element name="pedido" />
+                <xs:element name="cliente" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+<!-- Nivel 2 -->
+
+    <xs:element name="comercial">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="tipoTexto"/>
+                <xs:element name="apellido1" type="tipoTexto"/>
+                <xs:element name="apellido2" type="tipoTexto"/>
+                <xs:element name="ciudad" type="tipoTexto"/>
+                <xs:element name="comisión" type="xs:float"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoID"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cantidad" type="xs:double"/>
+                <xs:element name="fecha" type="xs:date"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoID"/>
+            <xs:attribute name="id_cliente" type="tipoID"/>
+            <xs:attribute name="id_comercial" type="tipoID"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cliente">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="tipoTexto"/>
+                <xs:element name="apellido1" type="tipoTexto"/>
+                <xs:element name="apellido2" type="tipoTexto"/>
+                <xs:element name="ciudad" type="tipoTexto"/>
+                <xs:element name="categoria" type="xs:int"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoID" />
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
