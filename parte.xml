@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding= "UTF-8" standalone= "yes"?>
+<!--
+	Fichero xml de un parte
+	Autor: Iván Bezanilla López
+	Fecha: 14/02/2023
+	Editor: Visual Studio Code
+-->
+
+<parte>
+    <encabezado cod_alumno="IB004">
+        <dia></dia>
+        <alumno></alumno>
+        <curso></curso>
+        <modulo></modulo>
+    </encabezado>
+
+    <conductas>
+        <descripcion></descripcion>
+        <tipoConducta></tipoConducta>
+        <recomendaciones></recomendaciones>
+        <observaciones></observaciones>
+        <firmas></firmas>
+    </conductas>
+
+    <informe>
+        <alumno></alumno>
+        <grupo></grupo>
+        <donde></donde>
+        <quien></quien>
+        <pregunta></pregunta>
+        <firma>
+            <hora></hora>
+            <firma></firma>
+            <profesor></profesor>
+        </firma>
+    </informe>
+</parte>
