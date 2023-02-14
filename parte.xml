@@ -1,0 +1,36 @@
+<?xml version ="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+    Fichero parte.xml que organiza la información de un parte de incidencias
+    Autor: Manuel Díaz Noval
+    Fecha: 14/02/2023
+    Editor: GitHub
+-->
+<!DOCTYPE email>
+
+<parte_de_incidencias>
+
+    <introduccion>
+            <dia></dia>
+            <alumno></alumno>
+            <curso></curso>
+            <modulo></modulo>
+    </introduccion>
+
+    <conductas>
+        <conducta></conducta>
+        <opciones></opciones>
+        <recomendaciones></recomendaciones>
+        <observaciones></observaciones>
+        <firmas></firmas>
+    </conductas>
+
+    <informe>
+        <alumno></alumno>
+        <grupo></grupo>
+        <lugar></lugar>
+        <implicados></implicados>
+        <preguntas></preguntas>
+        <firmaAlumno></firmaAlumno>
+    </informe>
+
+</parte_de_incidencias>
