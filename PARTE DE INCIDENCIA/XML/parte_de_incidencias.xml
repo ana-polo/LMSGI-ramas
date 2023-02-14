@@ -8,9 +8,11 @@
     <conductas>
         <contrarias>
             <opciones_contrarias></opciones_contrarias>
+            <recomendaciones></recomendaciones>
         </contrarias>
         <gravemente>
             <opciones_gravemente></opciones_gravemente>
+            <recomendaciones></recomendaciones>
         </gravemente>
     </conductas>
     <firmas>
