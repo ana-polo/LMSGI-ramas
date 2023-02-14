@@ -1,0 +1,133 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+            <fichero>LMSGI-PARTE DE INCIDENCIAS</fichero>
+            <fechaCreacion>07-02-2023</fechaCreacion>
+            <autor>irvin asuncion</autor>
+            <aplicación>
+                Ejemplo de diseño de XML-Schema con referencias.
+            </aplicación>
+            <utilidad>Vocabulario para la validación de ficheros para un parte de incidencias</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleType name = "tipotexto">
+		<xs:restriction base = "xs:string">
+			<xs:pattern value = "([A-Z]\w+ ?)(\w+ ?)+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name = "id" >
+		<xs:restriction base = "xs:integer" >
+			<xs:pattern value = "([0-9]\w+ ?)(\w+ ?)+" />
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name = "tipoDosDecimales" >
+		<xs:restriction base = "xs:decimal" >
+			<xs:fractionDigits value = "2" />
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:element name = "ventas" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "cliente"/>
+                <xs:element ref = "comercial"/>
+                <xs:element ref = "pedido"/>
+            </xs:sequence>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "cliente" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "nombre" minOccurs = "1"/>
+                <xs:element ref = "apellido1" minOccurs = "1"/>
+                <xs:element ref = "apellido2"/>
+                <xs:element ref = "ciudad"/>
+                <xs:element ref = "categoria" minOccurs = "0"/> 
+            </xs:sequence>
+            <xs:attribute name = "id" use = "required" type="id" />
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "comercial" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "nombre"/>
+                <xs:element ref = "apellido1"/>
+                <xs:element ref = "apellido2"/>
+                <xs:element ref = "comision"/>
+            </xs:sequence>
+            <xs:attribute name = "id_comercial" use = "required" type="id"/>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "pedido" >
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element name = "total" type="total"/>
+                <xs:element name = "fecha" type="xs:date"/>
+            </xs:sequence>
+            <xs:attribute name = "id_pedido" use = "required" type="id"/>
+            <xs:attribute name = "id_cliente" use = "required" type = "id"/>
+            <xs:attribute name = "id_comercial" use = "required" type = "id"/>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name = "nombre" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "([A-Z]\w+ ?)(\w+ ?)+" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    <xs:element name = "apellido1" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "[A-Z][a-z]{20} [A-Z][a-z]{20}" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    <xs:element name = "apellido2" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "[A-Z][a-z]{20} [A-Z][a-z]{20}" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    <xs:element name = "ciudad" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "[A-Z][a-z]{100}" />
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+    <xs:element name = "categoria" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:string" >
+				<xs:pattern value = "[A-Z][a-z]{100}" />
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+    <xs:element name = "comision" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:decimal" >
+				<xs:pattern value = "[1-9]+" />
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+    <xs:complexType name = "total" >
+		<xs:sequence>
+			<xs:element minOccurs = "0" name = "tantoPorCiento" type = "tipoDosDecimales" />
+			<xs:element name = "datoNumerico" type = "tipoDosDecimales" />
+			<xs:element name = "moneda" >
+			    <xs:simpleType>
+				        <xs:restriction base = "xs:string" >
+					    <xs:enumeration value = "€ Euros" />
+					    <xs:enumeration value = "$ Dolares" />
+					    <xs:enumeration value = "£ Libras" />
+					    <xs:enumeration value = "¥ Yenes" />
+				    </xs:restriction>
+			    </xs:simpleType>
+		    </xs:element>
+	    </xs:sequence>
+	</xs:complexType>
+</xs:schema>
