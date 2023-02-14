@@ -43,36 +43,36 @@
     <xs:element name="comercial">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="nombre" type="tipoTexto"/>
-                <xs:element name="apellido1" type="tipoTexto"/>
-                <xs:element name="apellido2" type="tipoTexto"/>
-                <xs:element name="ciudad" type="tipoTexto"/>
-                <xs:element name="comisión" type="xs:float"/>
+                <xs:element name="nombre" type="tipoTexto" />
+                <xs:element name="apellido1" type="tipoTexto" />
+                <xs:element name="apellido2" type="tipoTexto" />
+                <xs:element name="ciudad" type="tipoTexto" />
+                <xs:element name="comisión" type="xs:float" />
             </xs:sequence>
-            <xs:attribute name="id" type="tipoID"/>
+            <xs:attribute name="id" type="tipoID" />
         </xs:complexType>
     </xs:element>
 
     <xs:element name="pedido">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="cantidad" type="xs:double"/>
-                <xs:element name="fecha" type="xs:date"/>
+                <xs:element name="cantidad" type="xs:double" />
+                <xs:element name="fecha" type="xs:date" />
             </xs:sequence>
-            <xs:attribute name="id" type="tipoID"/>
-            <xs:attribute name="id_cliente" type="tipoID"/>
-            <xs:attribute name="id_comercial" type="tipoID"/>
+            <xs:attribute name="id" type="tipoID" id="pedido" />
+            <xs:attribute name="id_cliente" type="xs:IDREF" />
+            <xs:attribute name="id_comercial" type="xs:IDREF" />
         </xs:complexType>
     </xs:element>
 
     <xs:element name="cliente">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="nombre" type="tipoTexto"/>
-                <xs:element name="apellido1" type="tipoTexto"/>
-                <xs:element name="apellido2" type="tipoTexto"/>
-                <xs:element name="ciudad" type="tipoTexto"/>
-                <xs:element name="categoria" type="xs:int"/>
+                <xs:element name="nombre" type="tipoTexto" />
+                <xs:element name="apellido1" type="tipoTexto" />
+                <xs:element name="apellido2" type="tipoTexto" />
+                <xs:element name="ciudad" type="tipoTexto" />
+                <xs:element name="categoria" type="xs:int" />
             </xs:sequence>
             <xs:attribute name="id" type="tipoID" />
         </xs:complexType>
