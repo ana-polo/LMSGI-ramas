@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empleados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation=" ">
+
+<parteDeIncidencias>
+
+    <datosDeBusqueda>
+        <dia>lunes</dia>
+        <alumno>pepe</alumno>
+        <asignaturaModulo>Ciencias de Asir</asignaturaModulo>
+        <curso>33</curso>
+    </datosDeBusqueda>
+
+    <firmas>
+        <firmaProfesor/>
+        <firmaJefatura/>
+        <firmaConvivencia/>
+        <firmaTutores/>
+        <firmaAlumno/>
+    </firmas>
+
+    <Conductas>
+
+        <conductasContrarias>
+            <bloqueDeConductas/>
+        </conductasContrarias>
+
+        <conductasPerjudiciales>
+            <bloqueDeConductas/>
+        </conductasPerjudiciales>
+
+        <observaciones>
+            <horaClase>17:55</horaClase>
+            <profesor>Gengis Khan</profesor>
+            <horadeJE>17:56</horadeJE>
+            <horaConvivencia>17:57</horaConvivencia>
+            <elProfesorRecomienda>aula</elProfesorRecomienda>
+        </observaciones>
+
+    </Conductas>
+
+    <informeDelAlumno>
+
+        <datosDelAlumno>
+            <alumno>pepe</alumno>
+            <grupo>b</grupo>
+            <dondeHaOcurrido>Patio</dondeHaOcurrido>
+            <quienEstaImplicado>Juan, Sasuke, Rosalia</quienEstaImplicado>
+        </datosDelAlumno>
+
+        <preguntas>
+            <pregunta1>iba por la calle</pregunta1>
+            <pregunta2>bien guapo</pregunta2>
+            <pregunta3>lloro</pregunta3>
+            <pregunta4>lloro mas</pregunta4>
+            <pregunta5>bien pero mal pero bien</pregunta5>
+        </preguntas>
+
+    </informeDelAlumno>
+    
+</parteDeIncidencias>

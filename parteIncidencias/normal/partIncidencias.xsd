@@ -107,7 +107,7 @@
                                                     <xs:element name="recomendacion1" type="typeText50"/>
                                                 </xs:choice>
                                             </xs:complexType>
-                                            <!--lloro mucho aqui -->
+
                                             <xs:complexType name="extendedType">
                                                 <xs:complexContent>
                                                     <xs:extension base="elProfesorRecomienda">

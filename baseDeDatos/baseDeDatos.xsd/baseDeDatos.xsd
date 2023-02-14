@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en-en">
+            <date> 14/02/23 </date>
+            <author> Manuel Gómez </author>
+            <utility> Base de datos </utility>
+            <function> MySQL XSD </function>
+        </xs:documentation>
+    </xs:annotation>
+
+<!-- comienzo de definiciones -->
+<xs:simpleType name="typeId">
+    <xs:restriction base="xs:nonNegativeInteger"/>
+</xs:simpleType>
+
+<xs:simpleType name="typeText100">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([A-Z](\w+) ?)+"/>
+        <xs:maxLength value="100"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- fin de definiciones -->
+
+<!-- comienzo de referencias -->
+<xs:attribute name="idCliente" type="typeId"/>
+<xs:attribute name="idComercial" type="typeId"/>
+<xs:attribute name="idPedido" type="typeId"/>
+<xs:element name="nombre" type="typeText100"/>
+<xs:element name="apellido1" type="typeText100"/>
+<xs:element name="apellido2" type="typeText100"/> 
+<xs:element name="ciudad" type="typeText100"/>
+<xs:element name="categoria" type="xs:nonNegativeInteger"/>
+<xs:element name="comision" type="xs:nonNegativeInteger"/>
+<xs:element name="total" type="xs:nonNegativeInteger"/>
+<xs:element name="fecha" type="xs:date"/>
+
+<xs:element name="clientes">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="nombre"/>
+            <xs:element ref="apellido1"/>
+            <xs:element ref="apellido2"/>
+            <xs:element ref="ciudad"/>
+            <xs:element ref="categoria"/>
+        </xs:sequence>
+        <xs:attribute ref="idCliente"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="comerciales">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="nombre"/>
+            <xs:element ref="apellido1"/>
+            <xs:element ref="apellido2"/>
+            <xs:element ref="comision"/>
+        </xs:sequence>
+        <xs:attribute ref="idComercial"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="pedidos">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="total"/>
+            <xs:element ref="fecha"/>
+        </xs:sequence>
+        <xs:attribute ref="idPedido"/>
+        <xs:attribute ref="idCliente"/>
+        <xs:attribute ref="idComercial"/>
+    </xs:complexType>
+</xs:element>
+<!-- fin de referencias -->
+
+<!-- comienzo de estructura -->
+
+<xs:element name="ventas">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="clientes"/>
+            <xs:element ref="comerciales"/>
+            <xs:element ref="pedidos"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<!-- fin de estructura -->
+</xs:schema>
