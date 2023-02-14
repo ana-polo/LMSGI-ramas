@@ -1,0 +1,16 @@
+
+------------------------------------------------------------------------------------------------------
+ejemplo de uso para xs:choice.
+
+<xs:element name="ejemplo">
+  <xs:complexType>
+    <xs:choice>
+      <xs:element name="opcion1" type="xs:string"/>
+      <xs:element name="opcion2" type="xs:string"/>
+      <xs:element name="opcion3" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+
+similar a enumeration aplicado a elementos.
+------------------------------------------------------------------------------------------------------

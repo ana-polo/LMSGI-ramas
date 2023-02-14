@@ -1,16 +1,16 @@
 from xml import etree
+#cambiar xml por lxml
+#instalar lxml https://lxml.de/installation.html
 
-# Cargar el archivo XSD en un objeto etree
+# xsd en un etree con objeto que valide
 xsd = etree.parse('xml-schema_irving.xsd')
-
-# Crear un objeto validador XMLSchema
 xmlschema = etree.XMLSchema(xsd)
 
-# Cargar el archivo XML en un objeto etree
+# cargar el xml
 xml = etree.parse('xml_irving.xml')
 
-# Validar el archivo XML contra el esquema XSD
+# validación
 if xmlschema.validate(xml):
-    print('El archivo XML es válido según el esquema XSD')
+    print('el xml es valido')
 else:
-    print('El archivo XML no es válido según el esquema XSD')
+    print('el xml y el xsd no coinciden')

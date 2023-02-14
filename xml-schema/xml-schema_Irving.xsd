@@ -7,7 +7,7 @@
     <xs:complexType>
         <xs:sequence>
             <xs:element ref="dia"></xs:element>
-            <xs:element ref="tipoNombre"></xs:element>
+            <xs:element ref="globalNombre"></xs:element>
             <xs:element ref="curso"></xs:element>
             <xs:element ref="asignatura"></xs:element>
         </xs:sequence>
@@ -15,11 +15,17 @@
 </xs:element>
     <!-- contenido de globalAlumno -->
     <xs:element name="dia" type="xs:date"></xs:element>
-    <xs:element name="tipoNombre" type="xs:string"></xs:element>
+    <xs:element name="globalNombre">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="([A-Z][a-z]+)([A-Z][a-z]+)([A-Z][a-z]+)?"></xs:pattern>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
     <xs:element name="curso" type="xs:string"></xs:element>
     <xs:element name="asignatura" type="xs:string"></xs:element>
 
-<!-- elementos globales -->
+<!-- globalRecomendacionProfesor -->
 <xs:element name="globalRecomendacionProfesor">
     <xs:simpleType>
         <xs:restriction base="xs:string">
@@ -34,7 +40,7 @@
     <xs:complexType>
         <xs:sequence>
             <xs:element ref="conductas"></xs:element>
-            <xs:element ref="firmas"></xs:element>
+            <xs:element ref="globalFirmas"></xs:element>
             <xs:element ref="observacion"></xs:element>
             <xs:element ref="informe"></xs:element>
         </xs:sequence>
@@ -90,8 +96,44 @@
             </xs:simpleType>
         </xs:element>
 
+<!-- firmas -->
+<xs:element name="globalFirmas"></xs:element>
 
+    <!-- firmas contenido-->
 
+<!-- observacion -->
+<xs:element name="observacion" type="xs:string"></xs:element>
+
+<!-- informe -->
+<xs:element name="informe">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="globalNombre"></xs:element> <!-- nombre alumno-->
+            <xs:element ref="grupoAlumno"></xs:element>
+            <xs:element ref="lugarIncidente"></xs:element>
+            <xs:element ref="globalNombre"></xs:element> <!-- implicados -->
+            <xs:element ref="questionario"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+<!-- grupo alumno -->
+<xs:element name="grupoAlumno">
+    <xs:simpleType>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ASIR-1"></xs:enumeration>
+            <xs:enumeration value="ASIR-2"></xs:enumeration>
+            <xs:enumeration value="Asistencia-1"></xs:enumeration>
+            <xs:enumeration value="Asistencia-2"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:element>
+<!-- lugar incidente -->
+<xs:element name="lugarIncidente" type="xs:string"></xs:element>
+
+<xs:element name="questionario"> <!-- sin terminar-->
+
+</xs:element>
 
 
 </xs:schema>
+

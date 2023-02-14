@@ -1,3 +1,6 @@
+
+// no en uso
+
 parteDeIncidencias(conductas,recomendacion_profesor,firmas,observacion,informe)
     tipoAlumno(dia,nombre,curso,asignatura)
     conductas
