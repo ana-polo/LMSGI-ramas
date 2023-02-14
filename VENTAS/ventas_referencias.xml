@@ -5,13 +5,13 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:annotation>
         <xs:documentation xml:lang  = "es-es" >
-            <fichero>LMSGI-PARTE DE INCIDENCIAS</fichero>
+            <fichero>LMSGI-GESTOR DE VENTAS</fichero>
             <fechaCreacion>07-02-2023</fechaCreacion>
             <autor>irvin asuncion</autor>
             <aplicación>
                 Ejemplo de diseño de XML-Schema con referencias.
             </aplicación>
-            <utilidad>Vocabulario para la validación de ficheros para un parte de incidencias</utilidad> 
+            <utilidad>Vocabulario para la validación de ficheros para un gestor de ventas</utilidad> 
         </xs:documentation>
     </xs:annotation>
     <xs:simpleType name = "tipotexto">
