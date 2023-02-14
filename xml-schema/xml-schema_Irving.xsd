@@ -35,6 +35,15 @@
     </xs:simpleType>
 </xs:element>
 
+<!-- preguntas del questionario por poner algo-->
+<xs:element name="globalPregunta">
+    <xs:simpleType>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="300"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:element>
+
 <!-- declaracion de parte-->
 <xs:element name="parteDeIncidencias">
     <xs:complexType>
@@ -130,10 +139,15 @@
 <!-- lugar incidente -->
 <xs:element name="lugarIncidente" type="xs:string"></xs:element>
 
-<xs:element name="questionario"> <!-- sin terminar-->
-
+<!-- questionario -->
+<xs:element name="questionario">
+    <xs:complexType>
+        <xs:choice>
+            <xs:element ref="globalPregunta"></xs:element>
+            <xs:element ref="globalPregunta"></xs:element>
+            <xs:element ref="globalPregunta"></xs:element>
+            <xs:element ref="globalPregunta"></xs:element>
+        </xs:choice>
+    </xs:complexType>
 </xs:element>
-
-
 </xs:schema>
-
