@@ -174,7 +174,7 @@
     <xs:element name = "recomendaciones" >
 		<xs:simpleType >
 			<xs:restriction base = "xs:string" >
-				<xs:pattern value = "([A-Z][a-z]+ ?)" />
+				<xs:pattern value = "([A-Z]\w+ ?)(\w+ ?)+" />
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>
