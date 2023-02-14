@@ -99,7 +99,7 @@
                 <xs:element name="grupo" type="tipoGrupo" />
                 <xs:element name="lugar" type="tipoNombre" />
                 <xs:element name="implicados" type="tipoNombre" />
-                <xs:element name="preguntas" maxOccurs="5"/>
+                <xs:element name="preguntas" type="xs:string" maxOccurs="5"/>
                 <xs:element name="firmaAlumno" type="tipoFirma"/>
             </xs:sequence>
         </xs:complexType>

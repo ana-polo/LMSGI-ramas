@@ -9,28 +9,33 @@
 
 <parte_de_incidencias>
 
-    <introduccion>
-            <dia></dia>
-            <alumno></alumno>
-            <curso></curso>
-            <modulo></modulo>
+    <introduccion codAlumno="MD777">
+            <dia>2023-02-14</dia>
+            <alumno>Manuel Díaz Noval</alumno>
+            <curso>2022/2023</curso>
+            <modulo>ASIR</modulo>
     </introduccion>
 
     <conductas>
-        <conducta></conducta>
-        <opciones></opciones>
-        <recomendaciones></recomendaciones>
-        <observaciones></observaciones>
-        <firmas></firmas>
+        <conducta>conductaContraria</conducta>
+        <opciones>b</opciones>
+        <recomendaciones>recomendacionConductaContraria</recomendaciones>
+        <observaciones>Manuel debe comprometerse a portarse mejor en clase o sera expulsado del centro escolar</observaciones>
+        <firmas>
+            <horas>19:11:23</horas>
+            <firmas>Director</firmas>
+            <firmas>Profesor</firmas>
+            <firmas>Tutor</firmas>
+        </firmas>
     </conductas>
 
     <informe>
-        <alumno></alumno>
-        <grupo></grupo>
-        <lugar></lugar>
-        <implicados></implicados>
-        <preguntas></preguntas>
-        <firmaAlumno></firmaAlumno>
+        <alumno>Manuel Díaz Noval</alumno>
+        <grupo>ASIR1</grupo>
+        <lugar>Clase de ingles</lugar>
+        <implicados>Manuel Díaz Noval</implicados>
+        <preguntas>¿?</preguntas>
+        <firmaAlumno>Alumno</firmaAlumno>
     </informe>
 
 </parte_de_incidencias>
