@@ -1,0 +1,122 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+			<fichero>LMSGI-RA4c-Empleados-XMLSchema-referencia</fichero>
+			<fechaCreacion>14-02-2023</fechaCreacion>
+			<autor>david fernandez viota</autor>
+			<aplicación>Ejemplo de diseño de XML-Schema con referencias.</aplicación>
+            <utilidad>Vocabulario para la validación de ficheros básicos para la gestión de ventas</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+    <!-- ************** -->
+	<!-- TIPOS DE DATOS -->
+	<!-- ************** -->
+
+	<xs:simpleType name = "tipoTexto" >
+		<xs:restriction base = "xs:string" >
+			<xs:maxLength value = "100" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name = "tipoId" use="required"> 
+		<xs:restriction base = "xs:string">
+			<xs:pattern value = "\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+    
+    <xs:simpleType name = "tipoNomAp" use="required"> 
+		<xs:restriction base = "xs:string">
+			<xs:maxLength value = "100" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name = "tipoComision"> 
+		<xs:restriction base = "xs:decimal">
+			<xs:fractionDigit value ="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <!-- Definición del vocabulario -->
+	<!-- ************************** -->
+    <xs:element name="gestordeventas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cliente" maxOccurs="unbound"/>
+                <xs:element ref="comercial" maxOccurs="unbound"/>
+                <xs:element ref="pedido" maxOccurs="unbound"/>
+			</xs:sequence> 
+		</xs:complexType>
+	</xs:element>
+    
+    <!--DEFINICION DE CLIENTE -->
+	<xs:element name="cliente">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="id_cliente" type="tipoId"/>
+                <xs:element name="nombre" type="tipoNomAp"/>
+                <xs:element name="apellido1" type="tipoNomAp"/>
+            	<xs:element name="apellido2" type="tipoTexto"/>
+                <xs:element name="ciudad" type="tipoTexto"/>
+                <xs:element name="categoria" type="xs:string"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    
+    <!--DEFINICION DE COMERCIAL -->
+	<xs:element name="comercial">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="id_comercial" type="tipoId"/>
+                <xs:element name="nombre" type="tipoNomAp"/>
+                <xs:element name="apellido1" type="tipoNomAp"/>
+            	<xs:element name="apellido2" type="tipoTexto"/>
+                <xs:element name="comision" type="tipoComision"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <!--DEFINICION DE PEDIDO -->
+	<xs:element name="pedido">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="id_pedido" type="tipoId"/>
+                <xs:element name="total" type="xs:float"/>
+            	<xs:element name="fecha" type="xs:date"/>
+                <!--
+                <xs:element name="id_cliente" type="tipoId"/>
+                <xs:element name="id_comercial" type="tipoId"/>
+                -->
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    
+    <!-- KEYS
+        <xs:key name="PKCliente">
+            <xs:selector xpath="cliente/id_cliente"/>
+            <xs:field xpath="."/>
+        </xs:key>
+        <xs:key name="PKComercial">
+            <xs:selector xpath="comercial/id_comercial"/>
+            <xs:field xpath="."/>
+        </xs:key>
+        <xs:key name="PKPedido">
+            <xs:selector xpath="pedido/id_pedido"/>
+            <xs:field xpath="."/>
+        </xs:key>
+        <xs:keyref name="FK_id_cliente" refer="PKCliente">
+            <xs:selector xpath="pedido/id_cliente"/>
+            <xs:field xpath="."/>
+        </xs:keyref>
+        <xs:keyref name="FK_id_comercial" refer="PKComercial">
+            <xs:selector xpath="pedido/id_comercial"/>
+            <xs:field xpath="."/>
+        </xs:keyref>
+    -->
+</xs:schema>
