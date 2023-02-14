@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding= "UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation xml:lang ="es-es">
+            <fecha_creacion>07/02/2023</fecha_creacion>
+            <autor>Iván Bezanilla López</autor>
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- Tipo de datos-->
+    <xs:simpleType name="tipoId">
+        <xs:restriction base="xs:int">
+            <xs:totalDigits value="10" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="typetext100">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="100" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Definicion de elemntos-->
+    <!-- Nivel 2-->
+    <xs:element name="bbdd">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="comercial" />
+                <xs:element ref="pedido" />
+                <xs:element ref="cliente" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Nivel 2-->
+    <xs:element name="comercial">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="typetext100" />
+                <xs:element name="apellido1" type="typetext100" />
+                <xs:element name="apellido2" type="typetext100" />
+                <xs:element name="ciudad" type="typetext100" />
+                <xs:element name="comisión" type="xs:float" />
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoId" id="id_comercial" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cantidad" type="xs:decimal" />
+                <xs:element name="fecha" type="xs:date" />
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoId" id="id_pedido" />
+            <xs:attribute name="id_cliente" type="xs:IDREF" />
+            <xs:attribute name="id_comercial" type="xs:IDREF" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cliente">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="typetext100" />
+                <xs:element name="apellido1" type="typetext100" />
+                <xs:element name="apellido2" type="typetext100" />
+                <xs:element name="ciudad" type="typetext100" />
+                <xs:element name="categoria" type="tipoId" />
+            </xs:sequence>
+            <xs:attribute name="id" type="tipoId" id="id_cliente" />
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
