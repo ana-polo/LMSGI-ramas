@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name = "tipotexto">
+        <xs:restriction base = "xs:string">
+            <xs:pattern value = "([A-Z]\w+ ?)(\w+ ?)+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name= "apellido" >
+        <xs:restriction base = "xs:string" >
+            <xs:pattern value = "[A-Z][a-z]{20} [A-Z][a-z]{20}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name = "persona" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref = "datos_personal">
+                <xs:element ref = "trabajo" />
+                <xs:element ref = "sueldo"/>
+                <xs:element ref = "años_trabajados"
+            </xs:sequence>
+            <xs:attribute name = "fecha" use = "required" type = "xs:date" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "datos_personal" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name = "nombre" type = "tipotexto"/>
+                <xs:element name = "apellidos" type = "apellido"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name = "trabajos"  >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref = "opciones" maxOccurs="unbounded"/>
+                <xs:choice minOccurs = "0" >
+					<xs:element name = "opcion" type = "xs:boolean" />
+				</xs:choice>
+                <xs:element ref = "recomendaciones"/>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="opciones">
+        <xs:simpleType>    
+            <xs:restriction base = "xs:string">
+                <xs:enumeration value = "docente" />
+                <xs:enumeration value = "secretario" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:complexType name = "sueldo" >
+		<xs:sequence>
+			<xs:element minOccurs = "0" name = "tantoPorCiento" type = "tipoDosDecimales" />
+			<xs:element name = "datoNumerico" type = "tipoDosDecimales" />
+			<xs:element name = "moneda" >
+			    <xs:simpleType>
+				        <xs:restriction base = "xs:string" >
+					    <xs:enumeration value = "€ Euros" />
+				    </xs:restriction>
+			    </xs:simpleType>
+		    </xs:element>
+	    </xs:sequence>
+	</xs:complexType>
+    <xs:element name = "años_trabajados" >
+		<xs:simpleType >
+			<xs:restriction base = "xs:integer" maxOccurs="30" >
+				<xs:pattern value = "[0-9][0-9]" />
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+</xs:schema>
