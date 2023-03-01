@@ -18,7 +18,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref = "datos_personal">
-                <xs:element ref = "trabajo" />
+                <xs:element ref = "trabajos" />
                 <xs:element ref = "sueldo"/>
                 <xs:element ref = "años_trabajados"
             </xs:sequence>
