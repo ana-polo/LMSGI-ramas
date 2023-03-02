@@ -13,14 +13,18 @@
             <xs:pattern value = "[A-Z][a-z]{20} [A-Z][a-z]{20}" />
         </xs:restriction>
     </xs:simpleType>
-
+    <xs:simpleType name = "tipoDosDecimales" > 
+        <xs:restriction base = "xs:decimal" > 
+            <xs:fractionDigits value = "2" /> 
+        </xs:restriction> 
+    </xs:simpleType> 
     <xs:element name = "persona" >
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref = "datos_personal">
+                <xs:element ref = "datos_personal"/>
                 <xs:element ref = "trabajos" />
-                <xs:element ref = "sueldo"/>
-                <xs:element ref = "años_trabajados"
+                <xs:element name = "sueldo" type="sueldo"/>
+                <xs:element ref = "años_trabajados" maxOccurs ="30"/>
             </xs:sequence>
             <xs:attribute name = "fecha" use = "required" type = "xs:date" />
         </xs:complexType>
@@ -33,14 +37,13 @@
             </xs:sequence>
 		</xs:complexType>
 	</xs:element>
-    <xs:element name = "trabajos"  >
+    <xs:element name = "trabajos">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref = "opciones" maxOccurs="unbounded"/>
                 <xs:choice minOccurs = "0" >
 					<xs:element name = "opcion" type = "xs:boolean" />
 				</xs:choice>
-                <xs:element ref = "recomendaciones"/>
             </xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -58,8 +61,11 @@
 			<xs:element name = "datoNumerico" type = "tipoDosDecimales" />
 			<xs:element name = "moneda" >
 			    <xs:simpleType>
-				        <xs:restriction base = "xs:string" >
+				    <xs:restriction base = "xs:string" >
 					    <xs:enumeration value = "€ Euros" />
+                        <xs:enumeration value = "$ Dolares" />
+					    <xs:enumeration value = "£ Libras" />
+					    <xs:enumeration value = "¥ Yenes" />
 				    </xs:restriction>
 			    </xs:simpleType>
 		    </xs:element>
@@ -67,7 +73,7 @@
 	</xs:complexType>
     <xs:element name = "años_trabajados" >
 		<xs:simpleType >
-			<xs:restriction base = "xs:integer" maxOccurs="30" >
+			<xs:restriction base = "xs:integer" >
 				<xs:pattern value = "[0-9][0-9]" />
 			</xs:restriction>
 		</xs:simpleType>
