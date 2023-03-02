@@ -69,6 +69,8 @@
         </xs:complexType>
     </xs:element>
 
+
+
     <xs:element name="conductas">
         <xs:complexType>
             <xs:choice>
@@ -86,7 +88,6 @@
                                 <xs:complexType>
                                     <xs:choice>
                                         <xs:element name="recomendacion1" type="typeText50"/>
-                                        <!-- extension no furula -->
                                     </xs:choice>
                                 </xs:complexType>
                             </xs:element>
@@ -137,6 +138,16 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>  
+
+
+<xs:element name="informeDelAlumno">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="alumno" type="typeText30"/>
+            <xs:element name="grupo"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
 
     <!-- fin listado de referencias -->
 

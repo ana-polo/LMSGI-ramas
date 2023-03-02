@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+<xs:simpleType name="typeText50">
+    <xs:restriction base="xs:string">
+        <xs:maxLength value="50"/>
+        <xs:pattern value="([A-Z](\w+) ?)+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:element name="persona">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nombre" type="typeText50"/>
+            <xs:element name="apellido" type="typeText50"/>
+            <xs:element name="trabajo">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="docente"/>
+                        <xs:element name="secretario"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="añosTrabajados">
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="30"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="sueldo">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:fractionDigits value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>        
+            </xs:element>
+            <xs:element name="fecha" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+</xs:schema>
