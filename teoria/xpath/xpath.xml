@@ -1,0 +1,20 @@
+<!-- 
+@: para atributos
+Elementos: solo el nombre
+ficheros: elementos pero poseen extension
+/: para establecer un path
+//: retroceso en el path
+* : visualiza todo en la posición
+
+Suelen ser parte de un XSD 
+XPATH se referencia en el XSD a través de :
+
+· key, permite definir un elemento o atributo como clave. Dicho valor no podrá repetirse ni ser nulo, 
+de modo que identifica de forma única al componente al que se asocia. 
+Tiene asociado un atributo obligatorio: name, que es el nombre de la clave.
+
+· keyref, permite referenciar las claves primarias o claves únicas formadas por elementos y/o atributos.
+Tiene asociados dos atributos obligatorios: 
+name, que es el nombre de la referencia a la clave. refer, nombre de la clave referenciada.
+
+-->

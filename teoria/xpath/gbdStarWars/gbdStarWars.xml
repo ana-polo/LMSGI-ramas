@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<starWars xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="starWars.xsd">
+
+    <asociacion idAsociacion=""/>
+    <planetas>
+        <planeta idPlaneta="" pkPlaneta="">
+            <nombre>Tattoine</nombre>  
+            <rotacionPeriodo>tre</rotacionPeriodo> 
+            <orbitalPeriodo>si</orbitalPeriodo>
+            <diametro/> 
+            <clima/> 
+            <gravedad/> 
+            <terreno/>
+            <superficieAgua/>
+            <poblacion/> 
+            <creacionFecha/>
+        </planeta>
+    </planetas>
+    <personajes>
+        <personaje idPersonje="" fkPlaneta="" pkPersonaje="" fkPersonajePlaneta="" > <!-- fkPersonajePlaneta es dropeable -->
+            <nombre/>
+            <altura/>
+            <peso/>
+            <peloColor/>
+            <pielColor/>
+            <ojosColor/>
+            <nacimientoAnho/>
+            <genero/>
+            <creacionFecha/>
+        </personaje>
+    </personajes>
+    <personajeAsociacion fkPersonaje="" fkAsociacion="" pkPersonajeAsociacion="" 
+    fkPersonajePersonajeAsociacion="" idPersonaje="" idAsociacion="">
+    <!-- destacar si idpersonaje e idasociacion que son referenciadas son necesarias -->
+    </personajeAsociacion>
+    <peliculas>
+        <pelicula pkPelicula="">
+            <idPelicula/>
+            <episodio/>
+            <titulo/>
+        </pelicula>
+    </peliculas>
+    <personajesPeliculas>
+        <personajePelicula fkPersonaje="" fkPelicula="" pkPersonajePelicula="" fkPersonajePersonajePelicula=""/>
+    </personajesPeliculas>
+    <muertes>
+        <muerte idMuerte="" fkFallecido="" fkAsesino="" fkPelicula="" pkFallecimiento="" fkFallecidoMuerte=""
+        fkAsesinoMuerte="" fkPeliculaMuerte=""/>
+    </muertes>
+</starWars>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en-en">
+            <date> 07/03/23 </date>
+            <author> Manuel Gómez </author>
+            <utility> Xpath </utility>
+            <function> Ejemplos </function>
+        </xs:documentation>
+    </xs:annotation>
+
+<!-- valores de xpath-->
+<!-- #1 Nombre del propietario de la agenda -->
+/agenda/propietario/identificadores/nombre
+<!-- #2 Teléfono de casa del propietario -->
+/agenda/propietario/telefonos/casa
+<!-- #3 nombres y apellidos de los contactos de la agenda -->
+/agenda/contactos/persona/(nombre | apellidos)
+<!-- #4 nombre e identificador de cada contacto -->
+/agenda/contactos/persona/ @id | 
+/agenda/contactos/identificadores/nombre
+<!-- #5 Datos del contacto con identificador "p02"-->
+    /agenda/contactos/persona [@id="p02"]/*/*
+<!-- #6 Identificadores de los contactos que tienen teléfono de casa -->
+/agenda/contactos/persona/telefonos/casa/../../@id
+</xs:schema>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="en-en">
+            <date> 07/03/23 </date>
+            <author> Manuel Gómez </author>
+            <utility> SQL a XML </utility>
+            <function> pasar base de datos a vocabulario de xsd </function>
+            <!-- cabe destacar mi falta de conocimiento a la hora de aplicar key, keyref y keyrefs -->
+        </xs:documentation>
+    </xs:annotation>
+
+<!-- types -->
+<!--       -->
+<xs:simpleType name="typeText50">
+    <xs:restriction base="xs:string">
+        <xs:maxLength value="50"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeInt13">
+    <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="9999999999999"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeClima">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="árido"/>
+        <xs:enumeration value="templado"/>
+        <xs:enumeration value="tropical"/>
+        <xs:enumeration value="helado"/>
+        <xs:enumeration value="tenebroso"/>
+        <xs:enumeration value="ventoso"/>
+        <xs:enumeration value="cálido"/>
+        <xs:enumeration value="artificial"/>
+        <xs:enumeration value="gélido"/>
+        <xs:enumeration value="húmedo"/>
+        <xs:enumeration value="contaminado"/>
+        <xs:enumeration value="muy cálido"/>
+        <xs:enumeration value="subártico"/>
+        <xs:enumeration value="rocoso"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeTerreno">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="desierto"/>
+        <xs:enumeration value="prados"/>
+        <xs:enumeration value="montañas"/>
+        <xs:enumeration value="selva"/>
+        <xs:enumeration value="bosques"/>
+        <xs:enumeration value="tundra"/>
+        <xs:enumeration value="cuevas heladas"/>
+        <xs:enumeration value="sierras"/>
+        <xs:enumeration value="gigante gaseoso"/>
+        <xs:enumeration value="pantanoso"/>
+        <xs:enumeration value="colinas"/>
+        <xs:enumeration value="sabana"/>
+        <xs:enumeration value="cañones"/>
+        <xs:enumeration value="océanos"/>
+        <xs:enumeration value="volcanes"/>
+        <xs:enumeration value="ríos de lava"/>
+        <xs:enumeration value="cuevas"/>
+        <xs:enumeration value="lagos"/>
+        <xs:enumeration value="ríos"/>
+        <xs:enumeration value="asteroide sin aire"/>
+        <xs:enumeration value="glaciares"/>
+        <xs:enumeration value="cañones helados"/>
+        <xs:enumeration value="bosques de hongos"/>
+        <xs:enumeration value="mesetas"/>
+        <xs:enumeration value="urbanización"/>
+        <xs:enumeration value="islas rocosas"/>
+        <xs:enumeration value="llanuras"/>
+        <xs:enumeration value="desiertos rocosos"/>
+        <xs:enumeration value="valles"/>
+        <xs:enumeration value="barren"/>
+        <xs:enumeration value="nube tóxica"/>
+        <xs:enumeration value="lagos"/>
+        <xs:enumeration value="fértil"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeGravedad">
+    <xs:restriction base="xs:decimal">
+        <xs:fractionDigits value="2"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeNNI3">
+    <xs:restriction base="xs:nonNegativeInteger">
+        <xs:maxInclusive value="999"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeColores">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="n/a"/>
+        <xs:enumeration value="rubio"/>
+        <xs:enumeration value="calvo"/>
+        <xs:enumeration value="marron"/>
+        <xs:enumeration value="gris"/>
+        <xs:enumeration value="negro"/>
+        <xs:enumeration value="pelirrojo"/>
+        <xs:enumeration value="blanco"/>
+        <xs:enumeration value="castaño"/>
+        <xs:enumeration value="dorado"/>
+        <xs:enumeration value="azul"/>
+        <xs:enumeration value="clara"/>
+        <xs:enumeration value="rojo"/>
+        <xs:enumeration value="verde"/>
+        <xs:enumeration value="palido"/>
+        <xs:enumeration value="metal"/>
+        <xs:enumeration value="oscuro"/>
+        <xs:enumeration value="naranja"/>
+        <xs:enumeration value="amarillo"/>
+        <xs:enumeration value="bronceado"/>
+        <xs:enumeration value="amarillo"/>
+        <xs:enumeration value="azul-gray"/>
+        <xs:enumeration value="rosa"/>
+        <xs:enumeration value="avellana"/>
+
+
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeFechaBBY">
+    <xs:restriction base="xs:gYear"/>
+</xs:simpleType>
+
+<xs:simpleType name="typeGenero">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="n/a"/>
+        <xs:enumeration value="hombre"/>
+        <xs:enumeration value="mujer"/>
+        <xs:enumeration value="hermaphrodite"/>
+        <xs:enumeration value="calvo"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeEpisodio">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Episodio I"/>
+        <xs:enumeration value="Episodio II"/>
+        <xs:enumeration value="Episodio III"/>
+        <xs:enumeration value="Episodio IV"/>
+        <xs:enumeration value="Episodio V"/>
+        <xs:enumeration value="Episodio VI"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeTitulo">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="laAmenazaFantasma"/>
+        <xs:enumeration value="elAtaqueDeLosClones"/>
+        <xs:enumeration value="laVenganzaDeLosSith"/>
+        <xs:enumeration value="unaNuevaEsperanza"/>
+        <xs:enumeration value="elImperioContraataca"/>
+        <xs:enumeration value="elRetornoDelJedi"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<!--           -->
+<!-- fin types -->
+
+<!-- refs -->
+<!--      -->
+    <!-- segmento asociaciones -->
+<xs:element name="asociaciones">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="asociacion" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="asociacion">
+    <xs:complexType>
+        <xs:choice>
+            <xs:element name="ordenJedi" type="xs:string"/>
+            <xs:element name="alianzaRebelde" type="xs:string"/>
+            <xs:element name="republicaGalactica" type="xs:string"/>
+            <xs:element name="imperioGalactico" type="xs:string"/>
+            <xs:element name="sith" type="xs:string"/>
+            <xs:element name="senadoGalactico" type="xs:string"/>
+            <xs:element name="familiaRealDeAlderaan" type="xs:string"/>
+            <xs:element name="independientes" type="xs:string"/>
+            <xs:element name="ejercitoGungan" type="xs:string"/>
+            <xs:element name="fuerzasDeCazasRealesDelEspacioNaboo" type="xs:string"/>
+            <xs:element name="fuerzasRealesDeNaboo" type="xs:string"/>
+            <xs:element name="technoUnion" type="xs:string"/> 
+        </xs:choice>
+        <xs:attribute name="idAsociacion" type="xs:ID" use="required"/> <!-- ni idea de como usar estos -->
+        <xs:attribute name="pkAsociacion" type="xs:IDREF" use="required"/> <!-- ni idea de como usar estos -->
+    </xs:complexType>
+</xs:element>
+    <!-- fin segmento asociaciones -->
+
+    <!-- Segmento planetas -->
+<xs:element name="planetas">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="planeta" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="planeta">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nombre"/>  
+            <xs:element name="rotacionPeriodo" type="typeInt13"/>
+            <xs:element name="orbitalPeriodo" type="typeInt13"/>
+            <xs:element name="diametro" type="typeInt13"/> 
+            <xs:element name="clima" type="typeClima"/> 
+            <xs:element name="gravedad" type="typeGravedad"/>
+            <xs:element name="terreno" type="typeTerreno"/>
+            <xs:element ref="superficieAgua"/>
+            <xs:element name="poblacion" type="typeInt13"/> 
+            <xs:element ref="creacionFecha"/> <!-- xs:datetime implica zona horaria, dividimos CREACIONFECHA en hora y fecha -->
+        </xs:sequence>
+        <xs:attribute name="idPlaneta" type="xs:ID" use="required"/> <!-- ni idea de como usar estos -->
+        <xs:attribute name="pkPlaneta" type="xs:IDREF" use="required"/> <!-- ni idea de como usar estos -->
+    </xs:complexType>    
+</xs:element>
+
+<xs:element name="superficieAgua">
+    <xs:simpleType>
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:element>
+
+<xs:element name="creacionFecha">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="creacionFechaFecha" type="xs:date"/>
+            <xs:element name="creacionFechaHora" type="xs:time"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+    <!-- fin segmento planetas -->
+
+    <!-- segmento personajes -->
+<xs:element name="personajes">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="personaje" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="personaje">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nombre" type="typeText50"/>
+            <xs:element name="altura" type="typeNNI3"/>
+            <xs:element name="peso" type="typeNNI3"/>
+            <xs:element name="peloColor" type="typeColores"/>
+            <xs:element name="pielColor" type="typeColores"/>
+            <xs:element name="ojosColor" type="typeColores"/>
+            <xs:element name="nacimientoAnho" type="typeFechaBBY"/>
+            <xs:element name="genero" type="typeGenero"/>
+            <xs:element name="creacionFecha"/>
+        </xs:sequence>
+        <xs:attribute name="idPersonaje" type="xs:ID" use="required"/>
+        <xs:attribute name="pkPersonaje" type="xs:IDREF" use="required"/>
+        <xs:attribute name="fkPersonajePlaneta" type="xs:IDREFS" use="required"/>
+    </xs:complexType>
+</xs:element>
+    <!-- fin segmento personajes -->
+
+    <!-- segmento personajesAsociaciones -->
+<xs:element name="personajesAsociaciones">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="personajeAsociacion" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="personajeAsociacion">
+    <xs:complexType>
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="pkPersonajeAsociacion" type="xs:ID" use="required"/> <!-- fk personaje + fk asociacion -->
+        <xs:attribute name="fkPersonajePersonajeAsociacion" type="xs:IDREF" use="required"/> <!-- no estoy seguro de estos atributos -->
+        <xs:attribute name="fkAsociacionPersonajeAsociacion" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+</xs:element>
+    <!-- fin segmento personajesAsociaciones -->
+
+    <!-- segmento peliculas -->
+<xs:element name="peliculas">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="pelicula" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="pelicula">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="episodio" type="typeEpisodio"/>
+            <xs:element name="titulo" type="typeTitulo"/>
+        </xs:sequence>
+        <xs:attribute name="idPelicula" type="xs:ID" use="required"/>
+        <xs:attribute name="pkPelicula" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+</xs:element>
+    <!-- fin segmento peliculas -->
+
+    <!-- segmento personajesPeliculas -->
+
+<xs:element name="personajesPeliculas">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="personajePelicula" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="personajePelicula">
+    <xs:complexType>
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="pkPersonajePelicula" type="xs:ID" use="required"/>
+        <xs:attribute name="fkPersonajePersonajePelicula" type="xs:IDREFS" use="required"/>
+        <xs:attribute name="fkPeliculaPersonajePelicula" type="xs:IDREFS" use="required"/>
+    </xs:complexType>
+</xs:element>
+
+    <!-- fin segmento personajesPeliculas -->
+
+    <!-- segmento muertes -->
+
+<xs:element name="muertes">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="muerte" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="muerte">
+    <xs:complexType>
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="idMuerte" type="xs:ID" use="required"/>
+        <xs:attribute name="pkMuerte" type="xs:IDREF" use="required"/>
+        <xs:attribute name="fkFallecimiento" type="xs:IDREF" use="required"/>
+        <xs:attribute name="fkAsesino" type="xs:IDREF" use="required"/>
+        <xs:attribute name="fkPelicula" type="xs:IDREF" use="required"/>
+        <xs:attribute name="pkFallecidiMuerte" type="xs:IDREFS" use="required"/>
+        <xs:attribute name="fkAsesinoMuerte" type="xs:IDREFS" use="required"/>
+        <xs:attribute name="fkPeliculaMuerte" type="xs:IDREFS" use="required"/>
+    </xs:complexType>
+</xs:element>
+
+    <!-- fin segmento muertes -->
+
+<!--          -->    
+<!-- fin refs -->            
+
+    <xs:element name="starWars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="asociaciones"/>
+                <xs:element ref="planetas"/>
+                <xs:element ref="personajes"/>
+                <xs:element ref="personajesAsociaciones"/>
+                <xs:element ref="peliculas"/>
+                <xs:element ref="personajesPeliculas"/>
+                <xs:element ref="muertes"/>
+            </xs:sequence>
+        </xs:complexType>    
+    </xs:element>
+
+</xs:schema>
