@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <starWars xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:noNamespaceSchemaLocation="starWars.xsd">
-
-    <asociacion idAsociacion=""/>
+xsi:noNamespaceSchemaLocation="gbdstarWars.xsd">
+    <asociaciones>
+        <asociacion idAsociacion="5">
+            <sith/>
+        </asociacion>
+    </asociaciones>
     <planetas>
         <planeta idPlaneta="" pkPlaneta="">
             <nombre>Tattoine</nombre>  

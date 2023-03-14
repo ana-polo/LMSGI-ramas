@@ -191,9 +191,12 @@
             <xs:element name="fuerzasRealesDeNaboo" type="xs:string"/>
             <xs:element name="technoUnion" type="xs:string"/> 
         </xs:choice>
-        <xs:attribute name="idAsociacion" type="xs:ID" use="required"/> <!-- ni idea de como usar estos -->
-        <xs:attribute name="pkAsociacion" type="xs:IDREF" use="required"/> <!-- ni idea de como usar estos -->
-    </xs:complexType>
+        <xs:attribute name="idAsociacion" type="xs:ID" use="required"/>
+        </xs:complexType>
+        <xs:key name="pkAsociacion">
+            <xs:selector xpath="starWars/asociaciones/asociacion/pkAsociacion"/> <!-- aclarar path -->
+            <xs:field xpath="@idAsociacion"/>
+        </xs:key>
 </xs:element>
     <!-- fin segmento asociaciones -->
 
