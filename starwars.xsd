@@ -1,0 +1,151 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+			<fichero>Parte-XMLSchema-referencia</fichero>
+			<fechaCreacion>07-02-2023</fechaCreacion>
+			<autor>José Luis Gándara Gil</autor>
+			<aplicación>Ejemplo de diseño de XML-Schema con referencias.</aplicación>
+            <utilidad>Vocabulario para la validación de ficheros básicos para una base de datos denominada Star Wars</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- ************** -->
+	<!-- TIPOS DE DATOS -->
+	<!-- ************** -->
+
+    <xs:simpleType name = "tipoTexto" >
+		<xs:restriction base = "xs:string" >
+			<xs:maxLength value = "50" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name = "tipoId"> 
+		<xs:restriction base = "xs:string">
+			<xs:pattern value = "\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name = "tipoEpisodio" >
+		<xs:restriction base = "xs:string" >
+			<xs:maxLength value = "12" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    
+    <!-- ************************** -->
+    <!-- DEFINICION DEL VOCABULARIO -->
+	<!-- ************************** -->
+
+    <xs:element name="starwars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="pelicula"/>
+                <xs:element ref="personajes"/>
+                <xs:element ref="planeta"/>
+                <xs:element ref="asociacion"/>
+			</xs:sequence> 
+		</xs:complexType>
+	</xs:element>
+
+
+    <!--DEFINICION DE PELICULA -->
+    <xs:element name="pelicula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPelicula" type="tipoId"/>
+                <xs:element name="episodio" type="tipoEpisodio"/>
+                <xs:element name="titulo" type="tipoTitulo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- CLAVES DE PELICULA -->
+    <xs:key name="PK_idPelicula">
+        <xs:selector xpath="pelicula/idPelicula"/>
+        <xs:field xpath="."/>
+    </xs:key>
+
+
+
+    <!--DEFINICION DE PERSONAJES -->
+    <xs:element name="personajes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPersonaje" type="tipoId"/>
+                <xs:element name="nombre" type="tipoTexto"/>
+                <xs:element name="altura" type="tipoTexto"/>
+                <xs:element name="peso" type="tipoTexto"/>
+                <xs:element name="peloColor" type="tipoTexto"/>
+                <xs:element name="pielColor" type="tipoTexto"/>
+                <xs:element name="ojosColor" type="tipoTexto"/>
+                <xs:element name="nacimientoAnho" type="tipoTexto"/>
+                <xs:element name="genero" type="tipoTexto"/>
+                <xs:element name="planeta" type="tipoTexto"/>
+                <xs:element name="creacionFecha" type="tipoTexto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- CLAVES DE PERSONAJES -->
+    <xs:key name="PK_idPersonaje">
+        <xs:selector xpath="personaje/idPersonaje"/>
+        <xs:field xpath="."/>
+    </xs:key>
+    <xs:keyref name="FK_idPlaneta" refer="PK_idPlaneta">
+        <xs:selector xpath="personaje/planeta"/>
+        <xs:field xpath="."/>
+    </xs:keyref>
+
+
+
+    <!--DEFINICION DE PLANETA -->
+    <xs:element name="planeta">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idPlaneta" type="tipoId"/>
+                <xs:element name="nombre" type="tipoTexto"/>
+                <xs:element name="rotacionPeriodo" type="tipoTexto"/>
+                <xs:element name="orbitalPeriodo" type="tipoTexto"/>
+                <xs:element name="diametro" type="tipoTexto"/>
+                <xs:element name="clima" type="tipoTexto"/>
+                <xs:element name="gravedad" type="tipoTexto"/>
+                <xs:element name="terreno" type="tipoTexto"/>
+                <xs:element name="superficieAgua" type="tipoTexto"/>
+                <xs:element name="poblacion" type="tipoTexto"/>
+                <xs:element name="creacionFecha" type="tipoTexto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- CLAVES DE PLANETA -->
+    <xs:key name="PK_idPlaneta">
+        <xs:selector xpath="planeta/idPlaneta"/>
+        <xs:field xpath="."/>
+    </xs:key>
+
+
+
+    <!--DEFINICION DE ASOCIACION -->
+    <xs:element name="asociacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idAsociacion" type="tipoId"/>
+                <xs:element name="nombre" type="tipoTexto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- CLAVES DE ASOCIACION -->
+    <xs:key name="PK_idAsociacion">
+        <xs:selector xpath="asociacion/idAsociacion"/>
+        <xs:field xpath="."/>
+    </xs:key>
+
+</xs:schema>
