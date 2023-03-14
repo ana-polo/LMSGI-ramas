@@ -1,0 +1,146 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- Definición del vocabulario -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:annotation>
+        <xs:documentation xml:lang  = "es-es" >
+			<fichero>LMSGI-RA4c-starwars-XMLSchema-referencia</fichero>
+			<fechaCreacion>09-03-2023</fechaCreacion>
+			<autor>david fernandez viota</autor>
+			<aplicación>Ejemplo de diseño de XML-Schema con referencias.</aplicación>
+            <utilidad>Vocabulario para la validación de ficheros básicos para la gestión de starwars</utilidad> 
+        </xs:documentation>
+    </xs:annotation>
+    <!-- ************** -->
+	<!-- TIPOS DE DATOS -->
+	<!-- ************** -->
+    <xs:simpleType name = "tipoNombre" >
+		<xs:restriction base = "xs:string" >
+			<xs:maxLength value = "50" />
+			<xs:pattern value = "([A-Z][a-z]+ ?)(([A-Z]|[a-z])[a-z]+ ?)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+
+
+
+    <!-- Definición del vocabulario -->
+	<!-- ************************** -->
+
+    <xs:element name="starwars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="pelicula"/>
+                <xs:element ref="personajes"/>
+                <xs:element ref="planeta"/>
+				<xs:element ref="asociacion"/>
+			</xs:sequence> 
+		</xs:complexType>
+	</xs:element>
+    
+	<!-- Definición de pelicula -->
+	<xs:element name="pelicula">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idPelicula" type="tipoId"/>
+                <xs:element name="episodio" type="tipoEpisodio"/>
+                <xs:element name="titulo" type="tipoTitulo"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--clave principal pelicula-->
+	<xs:key name="idPelicula">
+		<xs:selector xpath="pelicula/idPelicula"/>
+		<xs:field xpath="."/>
+	</xs:key>
+
+    <!-- ************************************************************************************************ -->
+	<!-- Definición personajes-->
+	<xs:element name="personajes">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idPersonaje" type="tipoId"/>
+                <xs:element name="nombre" type="tipoEpisodio"/>
+                <xs:element name="altura" type="tipoTitulo"/>
+				<xs:element name="peso" type="tipoTitulo"/>
+				<xs:element name="peloColor" type="tipoTitulo"/>
+				<xs:element name="pielColor" type="tipoTitulo"/>
+				<xs:element name="ojosColor" type="tipoTitulo"/>
+				<xs:element name="nacimientoAnho" type="tipoTitulo"/>
+				<xs:element name="genero" type="tipoTitulo"/>
+				<xs:element name="creacionFecha" type="tipoTitulo"/>
+				<xs:element name="idPlaneta" type="tipoNombre"/>
+				<xs:element ref="personajesasociacion"/>
+				<xs:element ref="personajespelicula"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--clave principal personaje-->
+	<xs:key name="idPersonaje">
+		<xs:selector xpath="personaje/idPersonaje"/>
+		<xs:field xpath="."/>
+	</xs:key>
+    <xs:keyref name="FK_id_planeta" refer="idPlaneta">
+        <xs:selector xpath="personaje/idPlaneta"/>
+        <xs:field xpath="."/>
+    </xs:keyref>
+	<!-- Definición planeta-->
+	<xs:element name="planeta">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idPlaneta" type="tipoId"/>
+                <xs:element name="nombre" type="tipoEpisodio"/>
+                <xs:element name="rotacionPeridodo" type="tipoTitulo"/>
+				<xs:element name="orbitalPeriodo" type="tipoTitulo"/>
+				<xs:element name="diametro" type="tipoTitulo"/>
+				<xs:element name="clima" type="tipoTitulo"/>
+				<xs:element name="gravedad" type="tipoTitulo"/>
+				<xs:element name="terreno" type="tipoTitulo"/>
+				<xs:element name="superficieAgua" type="tipoTitulo"/>
+				<xs:element name="poblacion" type="tipoTitulo"/>
+				<xs:element name="creacionFecha" type="tipoTitulo"/>
+				
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <!--Creacion clave principal fkPlaneta-->
+	<xs:key name="idPlaneta">
+		<xs:selector xpath="planeta/idPlaneta"/>
+		<xs:field xpath="."/>
+	</xs:key>
+	 <!-- Definición asociacion-->
+	 <xs:element name="asociacion">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idAsociacion" type="tipoId"/>
+                <xs:element name="nombre" type="tipoEpisodio"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--clave principal asociacion-->
+	<xs:key name="idAsociacion">
+		<xs:selector xpath="asociacion/idAsociacion"/>
+		<xs:field xpath="."/>
+	</xs:key>
+	<!-- Definición personajesasociacion-->
+	<xs:element name="personajesasociacion">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idPersonaje" type="tipoId"/>
+                <xs:element name="idAsociacion" type="tipoEpisodio"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <!-- Definición PJpelicula-->
+	<xs:element name="personajespelicula">
+		<xs:complexType>
+        	<xs:sequence>
+                <xs:element name="idPersonaje" type="tipoId"/>
+                <xs:element name="idPelicula" type="tipoEpisodio"/>
+        	</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
